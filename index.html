@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>index</title>
+        <link rel="stylesheet" href="static/css/style.css">
+    </head>
+    <body>
+        <h1>{{ header }}</h1>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="flashmsg"><b>{{ message }}</b></p>
+                {% endfor %}
+            {% endif %}
+        {% endwith%}
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Title</th>
+                <th>Upload Date</th>
+                <th>Delete</th>
+                <th>Clustering</th>
+            </tr>
+            {% for i in all_data %}
+                <tr>
+                    <td>{{ i.name }}</td>
+                    <td>{{ i.title }}</td>
+                    <td>{{ i.date.date() }}</td>
+                    <td><a href="/delete/{{ i.id }}" class="delete">削除</a></td>
+                    <td>
+                        <a href="/clustering/{{ i.id }}" class="clustering">
+                            クラスタリング実行
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td>データがありません</td>
+                    <td>データがありません</td>
+                    <td>データがありません</td>
+                    <td>N/A</td>
+                    <td>N/A</td>
+                </tr>
+            {% endfor %}                 
+        </table>
+        <p>
+            <a href="/upload" class="upload">アップロード</a> | 
+            <a href="/dd" class="dd">ダウンロード・削除</a>
+        </p>
+        <hr size="5" noshade="" width="600" align="left">
+        <p>作成日 xx月xx日</p>
+    </body>
+</html>
