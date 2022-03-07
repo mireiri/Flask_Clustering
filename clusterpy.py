@@ -27,7 +27,7 @@ def clusterpy(file_path):
         columns=['日付', '出発-到着', 'cluster', 'WGT', 'VOL', 'Truck', 'Cost']
         )
     
-    result_path = 'download/' + file_path[6:-5] 
+    result_path = 'download/' + file_path[7:-5] 
     
     sns.pairplot(
         df, hue='cluster', vars=['WGT', 'VOL', 'Truck', 'Cost']
